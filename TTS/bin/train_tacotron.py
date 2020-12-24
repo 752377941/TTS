@@ -82,7 +82,7 @@ def format_data(data, speaker_mapping=None):
     text_input = data[0]
     text_lengths = data[1]
     speaker_names = data[2]
-    linear_input = data[3] if c.model in ["Tacotron"] else None
+    linear_input = data[3] if c.model in ["Tacotron", "TacotronGST"] else None
     mel_input = data[4]
     mel_lengths = data[5]
     stop_targets = data[6]
@@ -116,7 +116,7 @@ def format_data(data, speaker_mapping=None):
         text_lengths = text_lengths.cuda(non_blocking=True)
         mel_input = mel_input.cuda(non_blocking=True)
         mel_lengths = mel_lengths.cuda(non_blocking=True)
-        linear_input = linear_input.cuda(non_blocking=True) if c.model in ["Tacotron"] else None
+        linear_input = linear_input.cuda(non_blocking=True) if c.model in ["Tacotron", "TacotronGST"] else None
         stop_targets = stop_targets.cuda(non_blocking=True)
         if speaker_ids is not None:
             speaker_ids = speaker_ids.cuda(non_blocking=True)
